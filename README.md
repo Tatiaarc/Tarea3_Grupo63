@@ -8,7 +8,7 @@ En este documento se encuentra el códido correspondiente para la lectura de arc
 
 > Tarea3_Streaming_Producer.py para el procesamiento de datos en tiempo real (Spark Straming y Kafka)
 En este documento se encuentra código que funciona como Producer, para generar datos de facturas que serán procesados por aplicación Spark Streaming
->
-> > Tarea3_Streaming_Consumer.py para el procesamiento de datos en tiempo real (Spark Straming y Kafka)
+
+>  Tarea3_Streaming_Consumer.py para el procesamiento de datos en tiempo real (Spark Straming y Kafka)
 En este documento se encuentra código que funciona como Consumer, procesar y presentar los datos generados de facturas
 
