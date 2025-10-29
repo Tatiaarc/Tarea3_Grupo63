@@ -1,7 +1,7 @@
 # Tarea3_Grupo63
 Código en python para Tarea3_Grupo63
 
-En este repositorio se encuentran dos archivos .py
+En este repositorio se encuentran los siguientes archivos de Python:
 
 > Tarea3_Batch.py para el procesamiento de datos en bacth
 En este documento se encuentra el códido correspondiente para la lectura de archivo, limpieza de campos y transformación de datos para análisis exploratorio
