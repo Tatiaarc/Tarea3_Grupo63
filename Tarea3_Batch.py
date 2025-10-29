@@ -46,3 +46,38 @@ df = df.withColumn("patrimonio_sin_signo", F.regexp_replace("TOTAL PATRIMONIO", 
 df = df.withColumn("PATRIMONIO_decimal", F.regexp_replace("patrimonio_sin_signo", ",", "."))
 
 df = df.withColumn("PATRIMONIO_float", F.col("INGRESOS_decimal").cast("float"))
+
+
+#Top 10 empresas más grandes según ganancias
+top10_ganancias = df.select("RAZÓN SOCIAL", "GANANCIA_float","Año de Corte") \
+          .sort(F.col("GANANCIA_float").desc()) \
+          .limit(10)
+
+
+print("Top 10 empresas más grandes según ganancias")
+top10_ganancias.show()
+
+
+#Promedio de ingresos operacionales por macrosector en el 2024
+df_2024 = df.filter(F.col("Año de Corte") == 2024)
+
+promedio_ingresos_2024 = (
+    df_2024.groupBy("Año de Corte", "MACROSECTOR")
+    .agg(F.round(F.avg("INGRESOS_float"), 2).alias("promedio_2024"))
+    .orderBy(F.col("promedio_2024").desc())
+)
+
+print("Promedio de ingresos operacionales por macrosector en el 2024")
+promedio_ingresos_2024.show(50)
+
+#Patrimonio anual de las empresas
+df_aplicable = df.filter(F.col("Año de Corte").isNotNull())
+
+df_pivot = df_aplicable.groupBy("RAZÓN SOCIAL") \
+    .pivot("Año de Corte") \
+    .agg(F.round(F.sum("PATRIMONIO_float"), 2))
+
+
+print("Patromonio anual de las empresas")
+
+df_pivot.show()
